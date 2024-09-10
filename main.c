@@ -1,14 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
 
 //structure de nouvelle type que sappele livre :
 
 typedef struct
 {
     char titre[100];
-    char euteur[100];
+    char auteur[100];
     float  prix;
     int quantite;
 }library;
@@ -31,7 +30,7 @@ int menu_principal()
 
 }
 
-//un fonction de ajouter : le titre , le euteur , le prix , le quantite:
+//un fonction de ajouter : le titre , l'auteur , le prix , le quantite:
 int compteur = 0;
 
 void ajoute()
@@ -56,7 +55,7 @@ void ajoute()
         printf("veuillez entrer le titere de livre : ");
         scanf("%s", livre[i].titre);
         printf("veuillez entrer le euteur de livre : ");
-        scanf("%s", livre[i].euteur);
+        scanf("%s", livre[i].auteur);
         printf("veuillez entrer le prix de livre  : ");
         scanf("%f", &livre[i].prix);
         printf("veuillez entrer le quantite : ");
@@ -103,7 +102,7 @@ void supremer()
         if(strcmp(titre_supr,livre[i].titre)==0)
         {
             strcpy(livre[i].titre,livre[i+1].titre);
-            strcpy(livre[i].euteur,livre[i+1].euteur);
+            strcpy(livre[i].auteur,livre[i+1].auteur);
             livre[i].prix=livre[i+1].prix;
             livre[i].quantite=livre[i+1].quantite;
            // livre[i] = livre[i + 1];
@@ -184,7 +183,7 @@ void rechercher ()
     {
         if(strcmp(titre_rechercher,livre[i].titre)==0)
         {
-            printf("le titre : %s | l'auteur : %s | le prix : %.2f | le quantite : %d |\n", livre[i].titre, livre[i].euteur , livre[i].prix , livre[i].quantite);
+            printf("le titre : %s | l'auteur : %s | le prix : %.2f | le quantite : %d |\n", livre[i].titre, livre[i].auteur , livre[i].prix , livre[i].quantite);
         }
     }
 
@@ -198,7 +197,7 @@ void afficher ()
 {
     for(int i=0;i<compteur;i++)
     {
-        printf("le titre : %s | l'auteur : %s | le prix : %.2f | le quantite : %d |\n", livre[i].titre, livre[i].euteur , livre[i].prix , livre[i].quantite);
+        printf("le titre : %s | l'auteur : %s | le prix : %.2f | le quantite : %d |\n", livre[i].titre, livre[i].auteur , livre[i].prix , livre[i].quantite);
     }
 }
 
