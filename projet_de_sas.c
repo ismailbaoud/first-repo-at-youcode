@@ -34,6 +34,7 @@ Etudiant les_etudiant[100] = {
     {"sanaa", "mallali", "mathematiques", 3.6, {2008, 30, 8}, 10}};
 int compteur = 10;
 int count_id=10;
+
 int nombre_reussie_mathematiques = 0;
 int nombre_reussie_chimi = 0;
 int nombre_reussie_physique = 0;
@@ -170,6 +171,7 @@ void ajouter()
             }
             
           les_etudiant[compteur].nombre_uniqeu=count_id+1;
+          count_id++;
         }
         
         printf("le etudiant ajouter avec succee...");
