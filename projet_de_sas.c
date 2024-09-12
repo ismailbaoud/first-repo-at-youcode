@@ -33,7 +33,7 @@ Etudiant les_etudiant[100] = {
     {"salma", "hasson", "physique", 8.3, {2003, 21, 9}, 9},
     {"sanaa", "mallali", "mathematiques", 3.6, {2008, 30, 8}, 10}};
 int compteur = 10;
-int count_id=10;
+int count_id=11;
 
 int nombre_reussie_mathematiques = 0;
 int nombre_reussie_chimi = 0;
@@ -61,9 +61,9 @@ void reussie_in_chaqeu_departement()
             nombre_reussie_physique++;
         }
     }
-    printf("le nombre des etudiant reussie in math est : %d", nombre_reussie_mathematiques);
-    printf("le nombre des etudiant reussie in math est : %d", nombre_reussie_chimi);
-    printf("le nombre des etudiant reussie in math est : %d", nombre_reussie_physique);
+    printf("le nombre des etudiant reussie in mathematiques est : %d", nombre_reussie_mathematiques);
+    printf("le nombre des etudiant reussie in chimi est : %d", nombre_reussie_chimi);
+    printf("le nombre des etudiant reussie in physique est : %d", nombre_reussie_physique);
 }
 // *********************************************************************************************************************************
 /*fonction de ajouter*/
@@ -170,10 +170,10 @@ void ajouter()
                 break;
             }
             
-          les_etudiant[compteur].nombre_uniqeu=count_id+1;
+          les_etudiant[i].nombre_uniqeu=count_id;
           count_id++;
+          
         }
-        
         printf("le etudiant ajouter avec succee...");
     }
 
@@ -481,7 +481,7 @@ void recherche()
     int choix_pr;
     char choix[100];
     int choix_departement;
-    printf("|1 => Rechercher un étudiant par son nom \n2 => Afficher la liste des étudiants inscrits dans un département spécifique \n3 => retour \n");
+    printf("|1 => Rechercher un etudiant par son nom \n2 => Afficher la liste des etudiants inscrits dans un département specifique \n3 => retour \n");
     printf("veuilles entrer votre choix : ");
     scanf("%d", &choix_pr);
     switch (choix_pr)
@@ -505,7 +505,7 @@ void recherche()
         switch (choix_departement)
         {
         case 1:
-            printf("les etudiant dans math est : ");
+            printf("\nles etudiant dans math est : ");
             for (int i = 0; i < compteur; i++)
             {
                 if (strcmp("mathematiques", les_etudiant[i].departement) == 0)
@@ -521,7 +521,7 @@ void recherche()
             }
             break;
         case 2:
-            printf("les etudiant dans math est : ");
+            printf("\nles etudiant dans math est : ");
             for (int i = 0; i < compteur; i++)
             {
                 if (strcmp("physique", les_etudiant[i].departement) == 0)
@@ -537,7 +537,7 @@ void recherche()
             }
             break;
         case 3:
-            printf("les etudiant dans math est : ");
+            printf("\nles etudiant dans chimi est : ");
             for (int i = 0; i < compteur; i++)
             {
                 if (strcmp("chimi", les_etudiant[i].departement) == 0)
