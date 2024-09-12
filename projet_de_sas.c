@@ -9,7 +9,6 @@ typedef struct
     int mois;
 
 } date;
-
 typedef struct
 {
     char nom[100];
@@ -19,68 +18,73 @@ typedef struct
     date date_de_naissance;
     int nombre_uniqeu;
 } Etudiant;
-
 //*******************************************************************************************************************************
 /*fonction de etudiant */
 //*******************************************************************************************************************************
-Etudiant les_etudiant[500] = {
-    {"ismail", "baoud", "mathematiques", 19.5, {2004, 20, 10}, 1},
-    {"baoud", "ismail", "mathematiques", 17.0, {2000, 27, 9}, 2},
-    {"ahmad", "ali", "physique", 7.8, {2007, 11, 12}, 3},
-    {"ilyas", "banani", "chimie", 16.2, {2002, 9, 10}, 4},
-    {"achraf", "hamouda", "physique", 13.7, {2003, 6, 2}, 5},
-    {"karim", "alaoui", "chimie", 18.5, {2001, 10, 7}, 6},
+Etudiant les_etudiant[100] = {
+    {"ismail", "baoud", "mathematiques", 19.00, {2004, 20, 10}, 1},
+    {"Anass", "Boutaib", "physique", 19.99, {2001, 03, 06}, 2},
+    {"yasser", "aboufaris", "mathematiques", 19.50, {2005, 18, 05}, 3},
+    {"hamza", "alhdouchi", "chimie", 16.2, {2002, 9, 10}, 4},
+    {"achraf", "hamouda", "physique", 7.7, {2003, 6, 2}, 5},
+    {"ayoub", "ahnaou", "chimie", 18.5, {2001, 10, 7}, 6},
     {"haitam", "abod", "chimie", 9.4, {2002, 19, 1}, 7},
-    {"hatim", "karim", "mathematiques", 15.9, {2005, 12, 2}, 8},
-    {"salma", "hasson", "physique", 14.3, {2003, 21, 9}, 9},
+    {"hatim", "blghiti", "mathematiques", 17.99, {2005, 12, 2}, 8},
+    {"salma", "hasson", "physique", 8.3, {2003, 21, 9}, 9},
     {"sanaa", "mallali", "mathematiques", 3.6, {2008, 30, 8}, 10}
     };
 int compteur = 10;
 
 
-// *********************************************************************************************************************************
-/*fonction de ajouter*/
-//**********************************************************************************************************************************
-// fonction de ajoute : numero unique , nom , prenom , date de naissance , departement , note general :
-/*void les_etudient()
-{*/
-void reusse()
+int nombre_reussie_mathematiques=0;
+int nombre_reussie_chimi=0;
+int nombre_reussie_physique=0;
+void reussie_in_chaqeu_departement()
 {
     for(int i = 0 ; i<compteur;i++)
     {
         if(strcmp(les_etudiant[i].departement, "mathematiques")==0 && les_etudiant[i].note_general>=10)
         {
-            printf(" les etudient reusse en mathematiques est : %s\n", les_etudiant[i].nom);
+            nombre_reussie_mathematiques++;
         }
     }
     for(int i = 0 ; i<compteur;i++)
     {
         if(strcmp(les_etudiant[i].departement, "physique")==0 && les_etudiant[i].note_general>=10)
         {
-            printf("les etudient reusse physique est : %s\n", les_etudiant[i].nom);
+           nombre_reussie_chimi++;
         }
     }
     for(int i = 0 ; i<compteur;i++)
     {
         if(strcmp(les_etudiant[i].departement, "chimie")==0 && les_etudiant[i].note_general>=10)
         {
-            printf("les etudient reusse chimie est: %s\n", les_etudiant[i].nom);
-
+            nombre_reussie_physique++;
         }
     }
+    printf("le nombre des etudiant reussie in math est : %d", nombre_reussie_mathematiques);
+    printf("le nombre des etudiant reussie in math est : %d", nombre_reussie_chimi);
+    printf("le nombre des etudiant reussie in math est : %d", nombre_reussie_physique);
 }
-
-
+// *********************************************************************************************************************************
+/*fonction de ajouter*/
+//**********************************************************************************************************************************
+int test = 0 ;
 void ajouter()
 {
 
-    int taille;
+    int taille=0;
     int nombre_detudiant;
-    int test = 0 ;
-    printf("menu : \n");
-    printf("1 => ajouter un etudiant \n2 => ajouter plusieur \n3 => reteur\n ");
-    printf("veuillez entrer votre choix : ");
+    
+    printf("|****************************************|\n");
+    printf("|1 => ajouter un etudiant                |\n");
+    printf("|2 => ajouter plusieur                   |\n");
+    printf("|3 => retour                             |\n");
+    printf("|----------------------------------------|\n");
+
+    printf("|veuillez entrer votre choix :           ");
     scanf("%d", &nombre_detudiant);
+    printf("|----------------------------------------|\n");
     switch (nombre_detudiant)
     {
     case 1:
@@ -88,14 +92,14 @@ void ajouter()
         break;
 
     case 2:
-        printf("veuillez entrer combien des etudiants: ");
+        printf("|veuillez entrer combien des etudiants: ");
         scanf("%d", &taille);
         break;
     case 3:
         test = 1;
-        break;
+    break;
     default:
-        printf("non choix ...");
+        printf("|non choix ...");
         break;
     }
     if (test == 0)
@@ -103,37 +107,53 @@ void ajouter()
         for (int i = compteur; i < compteur + taille; i++)
         {
             int choix;
-            printf("veuillez entrer le nom: ");
+            printf("|----------------------------------------|\n");
+            printf("|veuillez entrer le nom: ");
             scanf("%s", les_etudiant[i].nom);
-            printf("veuillez entrer le prenom: ");
+            printf("|----------------------------------------|\n");
+            printf("|veuillez entrer le prenom: ");
             scanf("%s", les_etudiant[i].prenom);
+            printf("|----------------------------------------|\n");
             do
             {
-                printf("veuillez entrer la note general: ");
+                printf("|----------------------------------------|\n");
+                printf("|veuillez entrer la note general: ");
                 scanf("%f", &les_etudiant[i].note_general);
+                printf("|----------------------------------------|\n");
             } while (les_etudiant[i].note_general < 0 || les_etudiant[i].note_general > 20);
-            printf("veuillez entrer la date de nessons(YYYY/MM/DD): \n");
+            printf("|veuillez entrer la date de nessons(YYYY/MM/DD): \n");
 
             do
             {
+                printf("|----------------------------------------|\n");
                 printf("=> l'anne de naissance(YYYY) : ");
                 scanf("%d", &les_etudiant[i].date_de_naissance.annee);
+                printf("|----------------------------------------|\n");
             } while (les_etudiant[i].date_de_naissance.annee > 2020 || les_etudiant[i].date_de_naissance.annee < 1900);
 
             do
             {
+                printf("|----------------------------------------|\n");
                 printf("=> le mois de naissance (MM): ");
                 scanf("%d", &les_etudiant[i].date_de_naissance.mois);
+                printf("|----------------------------------------|\n");
             } while (les_etudiant[i].date_de_naissance.mois > 12 || les_etudiant[i].date_de_naissance.mois < 1);
 
             do
             {
+                printf("|----------------------------------------|\n");
                 printf("=> le jour de naissance (JJ): ");
                 scanf("%d", &les_etudiant[i].date_de_naissance.jour);
+                printf("|----------------------------------------|\n");
             } while (les_etudiant[i].date_de_naissance.jour > 31 || les_etudiant[i].date_de_naissance.jour < 1);
 
-            printf("veuillez entrer votre departempent : \n");
-            printf("1=> mathematiques \n2=> physique \n3=> chimie: ");
+            printf("|veuillez entrer votre departempent : \n");
+            printf("|------------------|\n");
+            printf("|1=> mathematiques |\n");
+            printf("|2=> physique      |\n");
+            printf("|3=> chimie:       |\n");
+            printf("|------------------|\n");
+            printf("|=>     ");
             scanf("%d", &choix);
             switch (choix)
             {
@@ -147,12 +167,14 @@ void ajouter()
                 strcpy(les_etudiant[i].departement, "chimie");
                 break;
             default:
-                printf("ne pas trouve");
+                printf("|ne pas trouve...");
                 break;
             }
             les_etudiant[i].nombre_uniqeu = i + 1;
         }
+        printf("le etudiant ajouter avec succee...");
     }
+   
     compteur += taille;
 }
 
@@ -166,25 +188,27 @@ void afficher()
 
         for (int i = 0; i < compteur; i++)
         {
-            printf("|le nombre d'Etudient : %d \n", les_etudiant[i].nombre_uniqeu);
-            printf("|le nom : %s - le prenom : %s \n", les_etudiant[i].nom, les_etudiant[i].prenom);
-            printf("|la note general est : %.2f  \n", les_etudiant[i].note_general);
-            printf("|la date de naissance est :  \n");
-            printf("|jour : %d / mois : %d / annee : %d \n", les_etudiant[i].date_de_naissance.jour, les_etudiant[i].date_de_naissance.mois, les_etudiant[i].date_de_naissance.annee);
-            printf("|le departement est : %s |", les_etudiant[i].departement);
-            printf("\n|******************************");
-            printf("\n|******************************");
+            printf("|************************************|\n");
+            printf("|le nombre d'Etudient : %d           \n", les_etudiant[i].nombre_uniqeu);
+            printf("|le nom : %s - le prenom : %s        \n", les_etudiant[i].nom, les_etudiant[i].prenom);
+            printf("|la note general est : %.2f          \n", les_etudiant[i].note_general);
+            printf("|la date de naissance est :          \n");
+            printf("|jour : %d / mois : %d / annee : %d  \n", les_etudiant[i].date_de_naissance.jour, les_etudiant[i].date_de_naissance.mois, les_etudiant[i].date_de_naissance.annee);
+            printf("|le departement est : %s             \n", les_etudiant[i].departement);
+            printf("|************************************|\n");
+         
         }
     }
     else
     {
+        printf("|------------------------------------|\n");
         printf("non etudient ....\n");
+        printf("|------------------------------------|\n");
     }
 }
 //*******************************************************************************************************************************
 /*fonction de modifier*/
 //*******************************************************************************************************************************
-// fonction modifier :
 void modifier()
 {
     int choix;
@@ -213,7 +237,7 @@ void modifier()
                     break;
                 case 3:
                     printf("veuillez entrer le nouvelle note general : ");
-                    scanf("%s", les_etudiant[i].note_general);
+                    scanf("%f", &les_etudiant[i].note_general);
                     break;
                 case 4:
                     printf("entrer votre choix : \n");
@@ -274,10 +298,9 @@ void modifier()
     }
 }
 //*******************************************************************************************************************************
-/*fonction de supremer*/
+/*fonction de suprimer*/
 //*******************************************************************************************************************************
-// fonction de supremer :
-void supremer()
+void suprimer()
 {
     char nom_detudiant[100];
     printf("veuille entrer le nom d'etudiant : ");
@@ -295,9 +318,7 @@ void supremer()
         }
     }
 }
-//*******************************************************************************************************************************
-/*fonction de moyenne general*/
-//*******************************************************************************************************************************
+
 float mathematiques = 0;
 float physique = 0;
 float chimie = 0;
@@ -307,8 +328,15 @@ int compteur_mathematiques = 0;
 int compteur_physique = 0;
 int compteur_chimie = 0;
 
-void calcule()
+//*******************************************************************************************************************************
+/*fonction de calcule */
+//*******************************************************************************************************************************
+void calcule_les_moyenne_general()
 {
+    compteur_mathematiques = 0;
+    compteur_physique = 0;
+    compteur_chimie = 0;
+
 
     float sum_1 = 0;
     float sum_2 = 0;
@@ -319,17 +347,18 @@ void calcule()
         if (strcmp("mathematiques", les_etudiant[i].departement) == 0)
         {
             sum_1 = sum_1 + les_etudiant[i].note_general;
-            compteur_mathematiques=compteur_mathematiques+1;
+            compteur_mathematiques++;
         }
+        
         else if (strcmp("physique", les_etudiant[i].departement) == 0)
         {
             sum_2 = sum_2 + les_etudiant[i].note_general;
-            compteur_physique=compteur_physique+1;;
+            compteur_physique++;;
         }
         else if (strcmp("chimie", les_etudiant[i].departement) == 0)
         {
             sum_3 = sum_3 + les_etudiant[i].note_general;
-            compteur_chimie=compteur_chimie+1;
+            compteur_chimie++;
         }
 
         sum_general = sum_general + les_etudiant[i].note_general;
@@ -340,18 +369,16 @@ void calcule()
     chimie = sum_3 / compteur_chimie;
     general = sum_general / compteur;
 }
-
 //*******************************************************************************************************************************
 /*fonction de 3 note*/
 //*******************************************************************************************************************************
-void les_3_note()
+void les_3_notes()
 {
     Etudiant tmp;
-    for (int i = 0; i < compteur - i; i++)
+    for (int i = 0; i < compteur; i++)
     {
-        for (int j = 0; i < compteur; i++)
-        {
-            if (les_etudiant[j].note_general < les_etudiant[j + 1].note_general)
+        for (int j = 0; j < compteur-i-1; j++)
+        {            if (les_etudiant[j].note_general < les_etudiant[j + 1].note_general)
             {
                 tmp = les_etudiant[j];
                 les_etudiant[j] = les_etudiant[j + 1];
@@ -380,10 +407,9 @@ void les_3_note()
 //*******************************************************************************************************************************
 /*fonction de statistics*/
 //*******************************************************************************************************************************
-
 void statistics()
 {
-    float choix_2;
+    float seuil;
     int choix;
     printf("******   le menu ******\n");
     printf("|1 => aficher le nombre total d'Etudiant inscrits \n");
@@ -391,6 +417,7 @@ void statistics()
     printf("|3 => aficher le nombre d'etudiant ayant une superieur a un certain ceul \n");
     printf("|4 => aficher les trois etudiant ayant les meilleures notes \n");
     printf("|5 => aficher le nombre d'etudiants ayant reussi dans chaque departement \n");
+    printf("|6 => return \n");
     printf("|veuillez entrer votre choix : ");
     scanf("%d", &choix);
     switch (choix)
@@ -399,17 +426,24 @@ void statistics()
         printf("le nombre totel d'etudiants inscrits est : %d ", compteur);
         break;
     case 2:
-        calcule();
+        calcule_les_moyenne_general();
         printf("le nombre d'etudiants dans mathematiques est : %d \n", compteur_mathematiques);
         printf("le nombre d'etudiants dans physique est : %d \n", compteur_physique);
         printf("le nombre d'etudiants dans chimie est : %d ", compteur_chimie);
         break;
-    case 3:  printf("veuillez entrer le seuil : ");
-        scanf("%f", &choix_2);
+    case 3:
+        do
+        { 
+            printf("veuillez entrer le seuil : ");   
+            scanf("%f", &seuil);
+        }while(seuil<0 || seuil >20);
+        int non_seuil=0;
         for(int i = 0; i<compteur;i++)
         {
-            if(les_etudiant[i].note_general>=choix_2)
+            if(les_etudiant[i].note_general>=seuil)
             {
+                non_seuil = 1;
+                printf("|les etudiants ayant une note superieure au seuil sont : \n");
                 printf("|le nombre d'Etudient : %d \n", les_etudiant[i].nombre_uniqeu);
                 printf("|le nom : %s - le prenom : %s \n", les_etudiant[i].nom, les_etudiant[i].prenom);
                 printf("|la note general est : %.2f  \n", les_etudiant[i].note_general);
@@ -417,151 +451,270 @@ void statistics()
                 printf("|jour : %d / mois : %d / annee : %d \n", les_etudiant[i].date_de_naissance.jour, les_etudiant[i].date_de_naissance.mois, les_etudiant[i].date_de_naissance.annee);
                 printf("|le departement est : %s |", les_etudiant[i].departement);
                 printf("\n|******************************");
-                printf("\n|******************************");
+               
             }
+        }
+        if(non_seuil == 0)
+        {
+            printf("aucun etudiant ete trouver !!!");
         }
         break;
     case 4:
-        les_3_note();
+        les_3_notes();
         break;
-    case 5: reusse();
+    case 5: reussie_in_chaqeu_departement();
         break;
+    case 6 : break;
     }
 }
 //*******************************************************************************************************************************
 /*fonction de recherche*/
 //*******************************************************************************************************************************
 void recherche()
-{
-    char choix[100];
-    printf("veuillez entrer le nom : ");
-    scanf("%s", choix);
 
-    for (int i = 0; i < compteur; i++)
+{
+    int choix_pr;
+    char choix[100];
+    int choix_departement;
+    printf("|1 => Rechercher un étudiant par son nom \n2 => Afficher la liste des étudiants inscrits dans un département spécifique \n3 => retour \n");
+    printf("veuilles entrer votre choix : ");
+    scanf("%d", &choix_pr);
+    switch(choix_pr)
     {
-        if (strcmp(choix, les_etudiant[i].nom) == 0)
-        {
-            printf("le nom : %s |le prenom : %s | la note general : %.2f |\n", les_etudiant[i].nom, les_etudiant[i].prenom, les_etudiant[i].note_general);
-            printf("la date de naissance : %d / %d / %d|le nombre d'etudiant : %d|\n", les_etudiant[i].date_de_naissance.annee, les_etudiant[i].date_de_naissance.mois, les_etudiant[i].date_de_naissance.jour, les_etudiant[i].nombre_uniqeu);
-            printf("le deoartement : %s |\n", les_etudiant[i].departement);
-        }
+        case 1 : 
+            printf("|veuillez entrer le nom : ");
+            scanf("%s", choix);
+            for (int i = 0; i < compteur; i++)
+            {
+                if (strcmp(choix, les_etudiant[i].nom) == 0)
+                {
+                    printf("|le nom : %s |le prenom : %s | la note general : %.2f |\n", les_etudiant[i].nom, les_etudiant[i].prenom, les_etudiant[i].note_general);
+                    printf("|la date de naissance : %d / %d / %d|le nombre d'etudiant : %d|\n", les_etudiant[i].date_de_naissance.annee, les_etudiant[i].date_de_naissance.mois, les_etudiant[i].date_de_naissance.jour, les_etudiant[i].nombre_uniqeu);
+                    printf("|le deoartement : %s |\n", les_etudiant[i].departement);
+                }
+            }
+        break;
+        case 2 : 
+                printf("1 => mathematiques \n2 => physique \n3 => chimi \n4 => tetour \n");
+                scanf("%d", &choix_departement);
+                switch(choix_departement)
+                {
+                    case 1 :
+                    printf("les etudiant dans math est : ");
+                    for(int i =0;i<compteur;i++)
+                    {
+                        if (strcmp("mathematiques", les_etudiant[i].departement) == 0)
+                        {
+                            printf("|le nombre d'Etudient : %d \n", les_etudiant[i].nombre_uniqeu);
+                            printf("|le nom : %s - le prenom : %s \n", les_etudiant[i].nom, les_etudiant[i].prenom);
+                            printf("|la note general est : %.2f  \n", les_etudiant[i].note_general);
+                            printf("|la date de naissance est :  \n");
+                            printf("|jour : %d / mois : %d / annee : %d \n", les_etudiant[i].date_de_naissance.jour, les_etudiant[i].date_de_naissance.mois, les_etudiant[i].date_de_naissance.annee);
+                            printf("|le departement est : %s |", les_etudiant[i].departement);
+                            printf("\n|******************************");
+                        }
+                    }
+                    break;
+                    case 2 :
+                        printf("les etudiant dans math est : ");
+                        for(int i =0;i<compteur;i++)
+                        {
+                            if (strcmp("physique", les_etudiant[i].departement) == 0)
+                            {
+                                printf("|le nombre d'Etudient : %d \n", les_etudiant[i].nombre_uniqeu);
+                                printf("|le nom : %s - le prenom : %s \n", les_etudiant[i].nom, les_etudiant[i].prenom);
+                                printf("|la note general est : %.2f  \n", les_etudiant[i].note_general);
+                                printf("|la date de naissance est :  \n");
+                                printf("|jour : %d / mois : %d / annee : %d \n", les_etudiant[i].date_de_naissance.jour, les_etudiant[i].date_de_naissance.mois, les_etudiant[i].date_de_naissance.annee);
+                                printf("|le departement est : %s |", les_etudiant[i].departement);
+                                printf("\n|******************************");
+                            }
+                        }
+                        break;
+                    case 3 :
+                        printf("les etudiant dans math est : ");
+                        for(int i =0;i<compteur;i++)
+                        {
+                            if (strcmp("chimi", les_etudiant[i].departement) == 0)
+                            {
+                                printf("|le nombre d'Etudient : %d \n", les_etudiant[i].nombre_uniqeu);
+                                printf("|le nom : %s - le prenom : %s \n", les_etudiant[i].nom, les_etudiant[i].prenom);
+                                printf("|la note general est : %.2f  \n", les_etudiant[i].note_general);
+                                printf("|la date de naissance est :  \n");
+                                printf("|jour : %d / mois : %d / annee : %d \n", les_etudiant[i].date_de_naissance.jour, les_etudiant[i].date_de_naissance.mois, les_etudiant[i].date_de_naissance.annee);
+                                printf("|le departement est : %s |", les_etudiant[i].departement);
+                                printf("\n|******************************");
+                            }
+                        }
+                    case 4 : 
+                    break;
+                    
+                }
+        break;
+        case 3 : 
+        break;
     }
 }
-
 //*******************************************************************************************************************************
-/*fonction de tris*/
+/*fonction de recherche*/
 //*******************************************************************************************************************************
-
-void tri()
+void trier()
 {
     Etudiant tmp;
     int choix;
     int choix_2;
-    printf("menu de tri : \n");
-    printf("1 => tri alphabitique : \n2 => tri par moyenne general : \n3 => tri par reussite : \n");
+    printf("menu de trier : \n");
+    printf("1 => trier alphabitique : \n2 => trier par moyenne general : \n3 => trier par reussite : \n4 => return \n");
     printf("veuillez entrer votre choix : \n");
     scanf("%d", &choix);
     switch (choix)
     {
-    case 1:
-        printf("1 => croissant (a-z) : \n2 => decroissant (z-a) : \n => : ");
-        scanf("%d", &choix_2);
-        switch (choix_2)
-        {
-            case 1:
+    case 1 :
 
-            for (int i = 0; i < compteur - 1; i++)
+            printf("1 => croissant (a-z) : \n2 => decroissant (z-a) : \n3 => return \n => : ");
+            scanf("%d", &choix_2);
+            switch (choix_2)
             {
-                int min=i;
 
-                for (int j = i + 1; j < compteur; j++)
-                {
-                    if (strcmp(les_etudiant[j].nom, les_etudiant[min].nom) < 0)
-                    {
-                        min = j;
-                    }
-                }
-                tmp = les_etudiant[min];
-                les_etudiant[min] = les_etudiant[i];
-                les_etudiant[i] = tmp;
-            }
-            
-            break;
-        case 2:
-            for (int i = 0; i < compteur - 1; i++)
-            {
-                int min=i;
+                case 1:
+                        /*for (int i = 0; i < compteur - 1; i++)
+                        {
+                            int min=i;
 
-                for (int j = i + 1; j < compteur; j++)
-                {
-                    if (strcmp(les_etudiant[j].nom, les_etudiant[min].nom) > 0)
-                    {
-                        min = j;
-                    }
-                }
-                tmp = les_etudiant[min];
-                les_etudiant[min] = les_etudiant[i];
-                les_etudiant[i] = tmp;
-            }
-            
-            break;
-        }
-        break;
-        case 2:
-        printf("1 => plus eleve au plus faible (10-1)\n2 => plus faible au plus eleve (1-10) \n=>");
-        scanf("%d", &choix_2);
-        switch(choix_2)
-        {
-        case 1:
+                            for (int j = i + 1; j < compteur; j++)
+                            {
+                                if (strcmp(les_etudiant[j].nom, les_etudiant[min].nom) < 0)
+                                {
+                                    min = j;
+                                }
+                            }
+                            tmp = les_etudiant[min];
+                            les_etudiant[min] = les_etudiant[i];
+                            les_etudiant[i] = tmp;
+                        }*/
+                       for(int i = 0; i <compteur ; i++)
+                       {
+                        for(int j = 0 ; j<compteur-i-1;j++)
+                        {
+                            if((strcmp(les_etudiant[j].nom, les_etudiant[j+1].nom) > 0))
+                            {
+                                tmp = les_etudiant[j];
+                                les_etudiant[j]=les_etudiant[j+1];
+                                les_etudiant[j+1]=tmp;
+                            }
+                        }
+                       }
         
-            for (int i = 0; i < compteur - 1; i++)
-            {
-                int min=i;
+                break;
 
-                for (int j = i + 1; j < compteur; j++)
-                {
-                    if (les_etudiant[j].note_general > les_etudiant[min].note_general)
+                case 2:
+
+                        for (int i = 0; i < compteur - 1; i++)
+                        {
+                            int min=i;
+
+                            for (int j = i + 1; j < compteur; j++)
+                            {
+                                if (strcmp(les_etudiant[j].nom, les_etudiant[min].nom) > 0)
                     {
                         min = j;
                     }
-                }
-                tmp = les_etudiant[min];
-                les_etudiant[min] = les_etudiant[i];
-                les_etudiant[i] = tmp;
+                            }
+                            tmp = les_etudiant[min];
+                            les_etudiant[min] = les_etudiant[i];
+                            les_etudiant[i] = tmp;
+                        }
+
+                break;
+            
+
+                case 3 :
+
+                break;
+
             }
+
+    break;
+
+    case 2:
+            printf("1 => plus eleve au plus faible (10-1)\n2 => plus faible au plus eleve (1-10) \n3 => return \n=>");
+            scanf("%d", &choix_2);
+            switch(choix_2)
+            {
+
+                case 1:
+        
+                        for (int i = 0; i < compteur - 1; i++)
+                        {
+                            int min=i;
+
+                            for (int j = i + 1; j < compteur; j++)
+                            {
+                                if (les_etudiant[j].note_general > les_etudiant[min].note_general)
+                                {
+                                    min = j;
+                                }
+                            }
+                            tmp = les_etudiant[min];
+                            les_etudiant[min] = les_etudiant[i];
+                            les_etudiant[i] = tmp;
+                        }
             
           
-            break;
-        case 2:
-            for (int i = 0; i < compteur - 1; i++)
-            {
-                int min=i;
+                break;
 
-                for (int j = i + 1; j < compteur; j++)
-                {
-                    if (les_etudiant[j].note_general < les_etudiant[min].note_general)
-                    {
-                        min = j;
-                    }
-                }
-                tmp = les_etudiant[min];
-                les_etudiant[min] = les_etudiant[i];
-                les_etudiant[i] = tmp;
+
+                case 2 :
+
+                        for (int i = 0; i < compteur - 1; i++)
+                        {
+                            int min=i;
+
+                            for (int j = i + 1; j < compteur; j++)
+                            {
+                                if (les_etudiant[j].note_general < les_etudiant[min].note_general)
+                                {
+                                    min = j;
+                                }
+                            }
+                            tmp = les_etudiant[min];
+                            les_etudiant[min] = les_etudiant[i];
+                            les_etudiant[i] = tmp;
+                        }
+                break;
+
+                case 3 : break;
             }
-            
-            break;
-        }
+    break;
 
+    case 3 : 
+
+        for(int i =0;i<compteur;i++)
+        {
+            if(les_etudiant[i].note_general >=10)
+            {
+                printf("les etudiant qui ont reussie sont : ");
+                printf("|le nombre d'Etudient : %d \n", les_etudiant[i].nombre_uniqeu);
+                printf("|le nom : %s - le prenom : %s \n", les_etudiant[i].nom, les_etudiant[i].prenom);
+                printf("|la note general est : %.2f  \n", les_etudiant[i].note_general);
+                printf("|la date de naissance est :  \n");
+                printf("|jour : %d / mois : %d / annee : %d \n", les_etudiant[i].date_de_naissance.jour, les_etudiant[i].date_de_naissance.mois, les_etudiant[i].date_de_naissance.annee);
+                printf("|le departement est : %s |", les_etudiant[i].departement);
+                printf("\n|******************************");
+            }
+        }
+    break;
+
+    case 4 : 
+    
+    break;
     }
         
         
-}
-
-        
+}     
 //*******************************************************************************************************************************
                                                  /*fonction de main*/
 //*******************************************************************************************************************************
-
 int main()
 {
 
@@ -572,11 +725,22 @@ int main()
         printf("\n|****************************************|\n");
         printf("|               **le menu **             |\n");
         printf("|****************************************|\n");
+        printf("|        *bienvenue a l'universite*      |\n");
+        printf("|****************************************|\n");
         printf("|      veuillez entrer votre choix       |\n");
         printf("|****************************************|\n");
 
-        printf("|1 => ajouter \n|2 => modifier \n|3 => supremer \n|4 => afficher \n|5 => le moyenne general\n|6 => statistics \n|7 => recherche \n|8 => tri \n|0 => exit \n");
-        printf("veuillez entrer votre choix : ");
+        printf("|1 => ajouter                            |\n");
+        printf("|2 => modifier                           |\n");
+        printf("|3 => suprimer                           |\n");
+        printf("|4 => afficher                           |\n");
+        printf("|5 => le moyenne general                 |\n");
+        printf("|6 => statistics                         |\n");
+        printf("|7 => recherche                          |\n");
+        printf("|8 => trier                              |\n");
+        printf("|0 => exit                               |\n");
+        printf("|----------------------------------------|\n");
+        printf("|veuillez entrer votre choix : ");
         scanf("%d", &choix);
         switch (choix)
         {
@@ -587,16 +751,16 @@ int main()
             modifier();
             break;
         case 3:
-            supremer();
+            suprimer();
             break;
         case 4:
             afficher();
             break;
         case 5:
-            calcule();
-            printf("|le moyenne general de fst est : %.2f\n", mathematiques);
-            printf("|le moyenne general de svt est : %.2f\n", physique);
-            printf("|le moyenne general de chariaa est : %.2f\n", chimie);
+            calcule_les_moyenne_general();
+            printf("|le moyenne general de les etudiant on mathematiques est :/ %.2f\n", mathematiques);
+            printf("|le moyenne general de les etudiant on physique est : %.2f\n", physique);
+            printf("|le moyenne general de les etudiant on chimie est : %.2f\n", chimie);
             printf("|le moyenne general de uneversity est : %.2f\n", general);
             break;
         case 6:
@@ -606,10 +770,10 @@ int main()
             recherche();
             break;
         case 8:
-            tri();
+            trier();
             break;
         default:
-            printf("veuillez entrer un choix entrer 1 et 8 or 0 for exit ");
+            printf("|veuillez entrer un choix entrer 1 et 8 or 0 for exit ");
             break;
         }
     } while (choix != 0);
